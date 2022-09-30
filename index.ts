@@ -8,19 +8,26 @@ const app: Express = express();
 const http = require("http");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-const io = new Server(server);
-const port = 3000;
+const io = new Server(server, {
+  cors: { origin: "*" }
+});
+const port = 8000;
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
 });
 
-server.listen(3000, () => {
-  console.log("listening on *:3000");
+server.listen(port, () => {
+  console.log(`listening on *:${port}`);
 });
 
 io.on('connection', (socket: Socket) => {
-  console.log('a user connected');
+  console.log('接続されました');
+
+  socket.on('shareFusensRequest', ({ res }) => {
+    console.log('welcome...')
+  })
+
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
