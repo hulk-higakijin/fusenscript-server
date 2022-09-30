@@ -24,11 +24,14 @@ server.listen(port, () => {
 io.on('connection', (socket: Socket) => {
   console.log('接続されました');
 
-  socket.on('shareFusensRequest', ({ res }) => {
+  socket.on('shareFusenRequest', ({ data }) => {
     console.log('welcome...')
+    console.log(data)
+    const hogehoge = '73234d0d-aa0d-4f8f-862f-e10201320064'
+    io.emit('shareFusen', data)
   })
 
   socket.on('disconnect', () => {
-    console.log('user disconnected');
+    console.log('切断されました');
   });
 });
