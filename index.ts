@@ -11,14 +11,14 @@ const { Server } = require("socket.io");
 const io = new Server(server, {
   cors: { origin: "*" }
 });
-const port = 8000;
+const PORT = process.env.PORT || 8000;
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
 });
 
-server.listen(port, () => {
-  console.log(`listening on *:${port}`);
+server.listen(PORT, () => {
+  console.log(`listening on *:${PORT}`);
 });
 
 io.on('connection', (socket: Socket) => {
