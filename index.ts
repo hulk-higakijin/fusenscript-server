@@ -33,8 +33,11 @@ io.on('connection', (socket: Socket) => {
   })
 
   socket.on('shareKanbanRequest', ({ data }) => {
-    console.log(data)
     io.emit('shareKanban', data )
+  })
+
+  socket.on('deleteKanbanRequest', ({ data })=> {
+    io.emit('deleteKanban', data)
   })
 
   socket.on('disconnect', () => {
