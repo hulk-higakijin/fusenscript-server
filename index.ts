@@ -32,6 +32,11 @@ io.on('connection', (socket: Socket) => {
     io.emit('deleteFusen', data )
   })
 
+  socket.on('shareKanbanRequest', ({ data }) => {
+    console.log(data)
+    io.emit('shareKanban', data )
+  })
+
   socket.on('disconnect', () => {
     console.log('切断されました');
   });
