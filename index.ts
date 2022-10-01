@@ -25,7 +25,11 @@ io.on('connection', (socket: Socket) => {
   console.log('接続されました');
 
   socket.on('shareFusenRequest', ({ data }) => {
-    io.emit('shareFusen', data)
+    io.emit('shareFusen', data )
+  })
+
+  socket.on('deleteFusenRequest', ({ data}) => {
+    io.emit('deleteFusen', data )
   })
 
   socket.on('disconnect', () => {
